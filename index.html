@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="./style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>Penarub IA2R</h1>
+        </div>
+        <div id="chatcontainer">
+
+            <div id="chat">
+                <div class="chat-bubble-container chat-gpt-bubble-container">
+                    <div class="profile-picture"><img src="./images/avatar.jpg" height="100%" /></div>
+                    <div class="chat-bubble chat-gpt-bubble">
+                        Je suis gay !
+                    </div>
+                </div>
+            </div>
+            <div id="input-area">
+                <div id="input-container">
+                    <form id="form">
+                        <input type="text" placeholder="Ecrivez votre message ici" id="user-input" autocomplete="off" />
+                    </form>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userInput = document.getElementById("user-input");
+        const chatArea = document.getElementById("chat");
+        const sendBtn = document.querySelector(".fa-paper-plane");
+        const form = document.getElementById('form');
+
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent refresh on form submission
+
+            if (userInput.value !== "") {
+                let userString = userInput.value;
+                userInput.value = ""; // Clear the input field
+
+                // Affiche la bulle de l'utilisateur
+                const newUserBubbleContainer = document.createElement("div");
+                newUserBubbleContainer.classList.add("chat-bubble-container", "user-bubble-container");
+                newUserBubbleContainer.innerHTML = `
+            <div class="profile-picture"><img src="./images/hitJUler.jpg" height="100%" /></div>
+        `;
+
+                const newUserBubble = document.createElement("div");
+                newUserBubble.classList.add("chat-bubble", "user-bubble");
+                newUserBubble.innerHTML = userString;
+                newUserBubbleContainer.appendChild(newUserBubble);
+                chatArea.appendChild(newUserBubbleContainer);
+
+                // Réponse IA2R
+                const newBubble2Container = document.createElement("div");
+                newBubble2Container.classList.add("chat-bubble-container", "chat-gpt-bubble-container");
+                newBubble2Container.innerHTML = `
+            <div class="profile-picture"><img src="./images/avatar.jpg" height="100%" /></div>
+        `;
+
+                const newBubble2 = document.createElement("div");
+                newBubble2.classList.add("chat-bubble", "chat-gpt-bubble");
+                newBubble2.innerHTML = "2R";
+                newBubble2Container.appendChild(newBubble2);
+                chatArea.appendChild(newBubble2Container);
+            }
+        }
+
+        sendBtn.addEventListener("click", handleSubmit); // Handle clicks to the send button
+        form.addEventListener("submit", handleSubmit); // Handle default submit (pressing enter)
+    </script>
+</body>
+
+</html>
